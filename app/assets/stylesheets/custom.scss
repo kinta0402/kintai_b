@@ -88,3 +88,16 @@ p {
   margin-top: 45px;
   @include box_sizing
 }
+
+/* table */
+
+table {
+  width: 100%;
+  vertical-align: middle;
+  text-align: center;
+}
+
+th {
+  vertical-align: middle;
+  text-align: center;  
+}
