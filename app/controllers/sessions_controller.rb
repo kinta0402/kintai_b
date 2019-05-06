@@ -17,6 +17,8 @@ class SessionsController < ApplicationController
   end
   
   def destroy
+    log_out #メソッド内容はヘルパーに記載
+    redirect_to root_url #ログアウト後、トップ画面に戻る
   end
   
 end

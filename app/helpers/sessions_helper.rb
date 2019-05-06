@@ -21,4 +21,9 @@ module SessionsHelper
     #訳)ﾛｸﾞｲﾝ中のﾕｰｻﾞｰは存在しませんか?
     #存在しない=trueがfalseに、存在する=falseがtrueに
   end
+  
+  def log_out
+    session.delete(:user_id) #セッションからユーザーidを削除
+    @current_user = nil #上記でセッションから削除しても、current_userメソッドによって@current_userに代入されたユーザーオブジェクトは削除されてない為、これで削除
+  end
 end
