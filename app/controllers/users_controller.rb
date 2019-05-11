@@ -66,7 +66,7 @@ class UsersController < ApplicationController
     
     # 正しいユーザーかどうか確認
     def correct_user
-      @user = User.find(pramas[:id])
+      @user = User.find(params[:id])
       redirect_to(root_url) unless current_user?(@user) #@userはcurrent_userですか？
                                   #unless → 条件式が偽の場合、処理を実行
                                   #@user(DBのid)と、current_user(sessionに保存されてる現在のﾕｰｻﾞｰ)が偽の場合？、トップへリダイレクトする  
