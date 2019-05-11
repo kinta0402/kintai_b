@@ -31,4 +31,16 @@ module SessionsHelper
     session.delete(:user_id) #セッションからユーザーidを削除
     @current_user = nil #上記でセッションから削除しても、current_userメソッドによって@current_userに代入されたユーザーオブジェクトは削除されてない為、これで削除
   end
+  
+  # 記憶しているURL(もしくはﾃﾞﾌｫﾙﾄ値)にリダイレクトする
+  def redirect_back_or(default)
+    redirect_to(session[:fowarding_url] || default) # fowarding = 転送
+    session.delete(:forwarding_url)
+  end
+  
+  # アクセスしようとしたURLを記憶する
+  def store_location # アクセスした場所(location)を格納(store)する
+    session[:forwarding_url] = request.original_url if request.get?
+  end
+  
 end

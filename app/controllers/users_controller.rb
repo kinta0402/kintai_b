@@ -7,8 +7,8 @@ class UsersController < ApplicationController
   
   before_action :correct_user,   only: [:edit, :update]
   
-  def index
-    @user = User.paginate(page: params[:page])
+  def index # 全てのユーザーを表示する
+    @users = User.all # 複数のユーザーを表示する為、users(複数形)
   end
   
   def show
@@ -58,6 +58,7 @@ class UsersController < ApplicationController
     # ログイン済みユーザーか確認
     def logged_in_user
       unless logged_in?
+        store_location
         flash[:danger] = "ログインしてください。"
         redirect_to login_url
       end
