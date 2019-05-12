@@ -2,13 +2,13 @@ class UsersController < ApplicationController
   
   # beforeアクション = Usersコントローラー内で定義されている全てのアクションが実行される前にbefore_actionが実行される
   # なぜbefore_actionするのか？ ⇒ログインしていないユーザーが、ユーザー情報編集や、更新を出来ないようにする為！！
-  before_action :logged_in_user, only: [:index, :edit, :update]
+  before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
   # editアクションとupdateアクションが実行される直前のみ、logged_in_userを実行する
   
   before_action :correct_user,   only: [:edit, :update]
   
   def index # 全てのユーザーを表示する
-    @users = User.all # 複数のユーザーを表示する為、users(複数形)
+    @users = User.paginate(page: params[:page])
   end
   
   def show
@@ -70,5 +70,16 @@ class UsersController < ApplicationController
       redirect_to(root_url) unless current_user?(@user) #@userはcurrent_userですか？
                                   #unless → 条件式が偽の場合、処理を実行
                                   #@user(DBのid)と、current_user(sessionに保存されてる現在のﾕｰｻﾞｰ)が偽の場合？、トップへリダイレクトする  
+    end
+    
+    def destroy
+      User.find(params[:id]).destroy
+      flash[:success] = "削除しました。"
+      redirect_to users_url
+    end
+    
+     # 管理者かどうか確認
+    def admin_user
+      redirect_to(root_url) unless current_user.admin?
     end
 end
