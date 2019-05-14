@@ -3,8 +3,9 @@
   <table class="table-bordered table-condensed">
     <tr>
       <td>時間管理表</td>
-      <td>指定勤務時間<%= @user.work_time %></td>
-      <td>基本時間<%= @user.basic_time %></td>
+      <td>指定勤務時間 <%= format_basic_time(@user.work_time) %></td>
+                          <!--上下メソッドは、ﾍﾙﾊﾟｰﾒｿｯﾄﾞに記載 (時間の表示方法を指定) = userのwork or basicカラムから日付を取り出し、表示方法を変更指定して表示-->
+      <td>基本時間 <%= format_basic_time(@user.basic_time) %></td>
       <td>月の初日</td>
     </tr>
 
