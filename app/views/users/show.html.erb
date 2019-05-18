@@ -1,19 +1,42 @@
 <% provide(:title, '勤怠表示') %>
 <div>
-  <table class="table-bordered table-condensed">
+  <table class = "table-bordered table-condensed">
     <tr>
       <td>時間管理表</td>
-      <td>指定勤務時間 <%= format_basic_time(@user.work_time) %></td>
-                          <!--上下メソッドは、ﾍﾙﾊﾟｰﾒｿｯﾄﾞに記載 (時間の表示方法を指定) = userのwork or basicカラムから日付を取り出し、表示方法を変更指定して表示-->
-      <td>基本時間 <%= format_basic_time(@user.basic_time) %></td>
-      <td>月の初日</td>
+      <td>指定勤務時間　<%= format_basic_time(@user.work_time) %></td>
+      <!--上下メソッドは、ﾍﾙﾊﾟｰﾒｿｯﾄﾞに記載 (時間の表示方法を指定) = userのwork or basicカラムから日付を取り出し、表示方法を変更指定して表示-->
+      <td>基本時間　<%= format_basic_time(@user.basic_time) %></td>
+      <td>初日</td>
     </tr>
 
     <tr>
-      <td>所属 : <%= @user.department.present? ? @user.department.department : "未設定" %></td>
+      <td>所属：<%= @user.department.present? ? @user.department : "未設定" %></td>
       <td>氏名：<%= @user.name %></td>
       <td>出勤日数</td>
-      <td>月の末日</td>
+      <td>末日</td>
     </tr>
+  </table>
+<!--!注意！この位置に</div>タグがあるはずですが、それは削除してください-->
+
+<!--↓↓↓ここから先が今回記述するコード↓↓↓-->
+  <table class = "table-bordered table-striped table-condensed">
+    <thead>
+      <tr> <!--rowspan:縦結合、colspan：横結合-->
+        <th rowspan = "2">日付</th>
+        <th rowspan = "2">曜日</th>
+        <th colspan = "3">出社</th>
+        <th colspan = "3">退社</th>
+        <th rowspan = "2">在社時間</th>
+        <th rowspan = "2">備考</th>
+      </tr>
+      <tr>
+        <th>時</th>
+        <th>分</th>
+        <th></th>
+        <th>時</th>
+        <th>分</th>
+        <th></th>
+      </tr>
+    </thead>
   </table>
 </div>
