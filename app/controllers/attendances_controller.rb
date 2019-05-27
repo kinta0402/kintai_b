@@ -16,8 +16,8 @@ class AttendancesController < ApplicationController
   
   def edit
     @user = User.find(params[:id])
-    @first_day = Date.parse(params[:date])
+    @first_day = first_day(params[:date])
     @last_day = @first_day.end_of_month
-    @dates = @user.attendances.where('worked_on >= ? and worked_on <= ?', @first_day, @last_day).order('worked_on')
+    @dates = user_attendances_month_date
   end
 end
