@@ -20,4 +20,10 @@ class AttendancesController < ApplicationController
     @last_day = @first_day.end_of_month
     @dates = user_attendances_month_date
   end
+  
+  def update
+   debugger
+ end
+
 end
+
