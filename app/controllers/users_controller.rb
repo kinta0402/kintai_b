@@ -5,9 +5,9 @@ class UsersController < ApplicationController
   before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
   # editアクションとupdateアクションが実行される直前のみ、logged_in_userを実行する
   
-  before_action :correct_user,   only: [:edit, :update]
+  before_action :correct_user,   only: [:edit, :update,]
   
-  before_action:admin_user,      only: [:destroy, :edit_basic_info, :update_basic_info]
+  before_action:admin_user,      only: [:destroy, :edit_basic_info, :update_basic_info, :index,]
   
   def index # 全てのユーザーを表示する
     @users = User.paginate(page: params[:page])
@@ -98,9 +98,7 @@ class UsersController < ApplicationController
     # 正しいユーザーかどうか確認
     def correct_user
       @user = User.find(params[:id])
-      redirect_to(root_url) unless current_user?(@user) #@userはcurrent_userですか？
-                                  #unless → 条件式が偽の場合、処理を実行
-                                  #@user(DBのid)と、current_user(sessionに保存されてる現在のﾕｰｻﾞｰ)が偽の場合？、トップへリダイレクトする  
+      redirect_to(root_url) unless current_user?(@user)
     end
     
     def destroy
