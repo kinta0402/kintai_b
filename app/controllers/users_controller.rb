@@ -15,6 +15,8 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
+    # URLから直接ページ移動するのを防止
+    redirect_to(root_url) unless @user == current_user or current_user.admin?
     @first_day = first_day(params[:first_day])
     @last_day = @first_day.end_of_month
     (@first_day..@last_day).each do |day|
