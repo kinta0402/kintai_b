@@ -14,6 +14,7 @@ class UsersController < ApplicationController
   end
   
   def show
+    # 例) /users/1 でｱｸｾｽ時、params[:id] は 1 に置き換わる/User.find(1)になる
     @user = User.find(params[:id])
     # URLから直接ページ移動するのを防止
     redirect_to(root_url) unless @user == current_user or current_user.admin?

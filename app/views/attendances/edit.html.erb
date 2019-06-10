@@ -22,7 +22,7 @@
               <td><%= day.worked_on.to_s(:date) %></td>
               <td><%= %w{日 月 火 水 木 金 土}[day.worked_on.wday] %></td>
               <td>
-                <% if day.worked_on <= today %> <!--亀ちゃんに教えてもらった-->
+                <% if day.worked_on <= today %> <!--亀ちゃんに教えてもらった/本日以前の場合、下記ﾌｫｰﾑを表示/明日以降はﾌｫｰﾑを表示させない-->
                   <%= af.time_field :started_at, class: "form-control" %>
                 <% end %>
               </td>
