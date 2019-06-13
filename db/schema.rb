@@ -13,9 +13,9 @@
 ActiveRecord::Schema.define(version: 20190518052543) do
 
   create_table "attendances", force: :cascade do |t|
-    t.date "worked_on"
-    t.datetime "started_at"
-    t.datetime "finished_at"
+    t.date "worked_on"        #日付
+    t.datetime "started_at"   #出勤時間
+    t.datetime "finished_at"  #退勤時間
     t.string "note"
     t.integer "user_id"
     t.datetime "created_at", null: false
