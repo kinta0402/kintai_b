@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-    has_many :attendances, dependent: :destroy
+    has_many :attendances, dependent: :destroy #attendanceモデルと紐づけ →1対多
     
     before_save { self.email = email.downcase }
     validates :name, presence: true, length: { maximum: 50 }
