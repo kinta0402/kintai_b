@@ -116,4 +116,14 @@ class UsersController < ApplicationController
     def admin_user
       redirect_to(root_url) unless current_user.admin?
     end
+    
+    def self.search(search)
+      return User.all unless search
+      User.where(['content LIKE ?', "%#{search}%"])
+    end
+    
+    def search
+      #Viewのformで取得したパラメータをモデルに渡す
+      @posts = User.search(params[:search])
+    end
 end

@@ -2,6 +2,10 @@
 <h1>ユーザ一覧</h1>
 
 <P class="search">ユーザー名検索</P>
+  <%= form_tag(search_path,:method => 'get') do %>
+    <%= text_field_tag :search %>
+    <%= submit_tag 'Search', :name => nil %>
+  <% end %>
 
 <%= will_paginate %>
 
