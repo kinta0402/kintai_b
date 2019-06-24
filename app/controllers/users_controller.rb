@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   before_action:admin_user,      only: [:destroy, :edit_basic_info, :update_basic_info, :index,]
   
   def index # 全てのユーザーを表示する
-    @users = User.paginate(page: params[:page])
+    @users = User.paginate(page: params[:page]).search(params[:search])
   end
   
   def show
