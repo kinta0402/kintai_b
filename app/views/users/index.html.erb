@@ -1,14 +1,23 @@
 <% provide(:title, '一覧') %>
-<h1>ユーザ一覧</h1>
+
+<% if params[:search].present? %>
+  <h1>検索結果</h1>
+<% else %>
+  <h1>ユーザ一覧</h1>
+<% end %>
+
 
 <%= will_paginate %>
 
 <!--  検索拡張機能  -->
-<p>user search</p>
-<%= form_tag(users_path, :method => 'get' ) do %>
-  <%= text_field_tag :search %>
-  <%= submit_tag 'Search', :name => nil %>
-<% end %>
+<div class="search">
+  <p>ユーザー名検索</p>
+    <%= form_tag(users_path, :method => 'get' ) do %>
+      <%= text_field_tag :search %>
+      <%= submit_tag '検索', :name => nil, class: "btn btn-primary" %>
+    <% end %>
+</div>
+
 
 
 <ul class="users">
