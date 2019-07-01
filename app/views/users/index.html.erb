@@ -6,19 +6,22 @@
   <h1>ユーザ一覧</h1>
 <% end %>
 
-
-<%= will_paginate %>
-
 <!--  検索拡張機能  -->
 <div class="search">
   <p>ユーザー名検索</p>
     <%= form_tag(users_path, :method => 'get' ) do %>
-      <%= text_field_tag :search %>
-      <%= submit_tag '検索', :name => nil, class: "btn btn-primary" %>
+      <div class = "input-group">
+        <%= text_field_tag :search %>
+         <span class="input-group-btn">
+          <%= submit_tag '検索', :name => nil, class: "btn btn-primary" %>
+         </span>
+      </div>   
     <% end %>
 </div>
 
 
+
+<%= will_paginate %>
 
 <ul class="users">
   <%= render @users %>
