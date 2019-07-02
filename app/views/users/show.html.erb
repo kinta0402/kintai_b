@@ -45,7 +45,7 @@
     <tbody>
       <% @dates.each do |day| %>
         <tr>
-          <td><%= day.worked_on.to_s(:date) %></td>
+          <td><%= day.worked_on.to_s(:date) %></td> <!--日付カラム-->
           <td>
             <% if day.worked_on.wday == 0 %>
               <span style = "color:red;">日</span>
@@ -56,7 +56,7 @@
             <% end %>  
           </td>
           <td><%= day.started_at.to_s(:hour) if day.started_at.present? %></td>
-          <td><%= day.started_at.to_s(:min) if day.started_at.present? %></td>
+          <td><%= day.started_at.to_s(:min) if day.started_at.present? %></td>  <!--たぶん追加機能no10ここいじれ-->
           <td>
             <% if day.worked_on == Date.today && day.started_at.nil? %>
               <%= button_to "出社", user_attendances_path(@user), class: "btn btn-xs btn-primary" %>
