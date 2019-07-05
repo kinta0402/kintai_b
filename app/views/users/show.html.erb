@@ -56,21 +56,21 @@
             <% end %>  
           </td>
           <td><%= day.started_at.to_s(:hour) if day.started_at.present? %></td>
-          <td><%= day.started_at.to_s(:min) if day.started_at.present? %></td>  <!--たぶん追加機能no10ここいじれ-->
+          <td><%= day.started_at.floor_to(15.minutes).to_s(:min) if day.started_at.present? %></td>  <!--たぶん追加機能no10ここいじれ-->
           <td>
             <% if day.worked_on == Date.today && day.started_at.nil? %>
               <%= button_to "出社", user_attendances_path(@user), class: "btn btn-xs btn-primary" %>
             <% end %>
           </td>
           <td><%= day.finished_at.to_s(:hour) if day.finished_at.present? %></td>
-          <td><%= day.finished_at.to_s(:min) if day.finished_at.present? %></td>
+          <td><%= day.finished_at.floor_to(15.minutes).to_s(:min) if day.finished_at.present? %></td>
           <td>
             <% if day.worked_on == Date.today && day.started_at.present? && day.finished_at.nil? %>
               <%= button_to "退社", user_attendances_path(@user), class: "btn btn-xs btn-primary" %>
             <% end %>
           </td>
           <td>
-            <% if day.started_at.present? && day.finished_at.present? %>
+            <% if day.started_at.present? && day.finished_at.present? %> <!--ここ読み込んで、合計を計算 --!>
               <%= working_times(day.started_at, day.finished_at) %>
               <% seconds = (day.finished_at - day.started_at).to_i %>
               <% @total_seconds = @total_seconds.to_i + seconds %>
