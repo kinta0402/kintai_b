@@ -9,7 +9,7 @@ module AttendancesHelper
     )
   end
   
-  def working_times(started_at, finished_at)
+  def working_times(started_at, finished_at) #在社時間
     format("%.2f", (((finished_at - started_at) / 60) / 60.0))
   end
   
