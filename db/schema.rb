@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190518052543) do
+ActiveRecord::Schema.define(version: 20190712093639) do
 
   create_table "attendances", force: :cascade do |t|
-    t.date "worked_on" #日付
-    t.datetime "started_at" #出勤時間
-    t.datetime "finished_at" #退社時間
+    t.date "worked_on"
+    t.datetime "started_at"
+    t.datetime "finished_at"
     t.string "note"
     t.integer "user_id"
     t.datetime "created_at", null: false
@@ -31,8 +31,9 @@ ActiveRecord::Schema.define(version: 20190518052543) do
     t.string "password_digest"
     t.string "department"
     t.boolean "admin", default: false
-    t.datetime "basic_time", default: "2019-02-19 22:30:00" #基本時間    【7.50】
-    t.datetime "work_time", default: "2019-02-19 23:00:00"  #指定勤務時間【8.00】
+    t.datetime "basic_time", default: "2019-02-19 22:30:00"
+    t.datetime "work_time", default: "2019-02-19 23:00:00"
+    t.string "remember_digest"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
