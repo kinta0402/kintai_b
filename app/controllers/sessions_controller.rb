@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
       log_in user   # session[:user_id] = 1 → user_id = 1 の情報をブラウザに保存させる (sessionに代入された値はブラウザに保存される) 
                     # session[:user_id] = user.id
                     # ⓶その存在するユーザーのid!?を変数sessionに代入する事で、ログインユーザーの情報が保持され続ける
-      remember user              
+      params[:session][:remember_me] == '1' ? remember(user) : forget(user)           
       redirect_to user
     else
       flash.now[:danger] = 'メールアドレスとパスワードの情報が一致しませんでした。'
@@ -18,8 +18,10 @@ class SessionsController < ApplicationController
   end
   
   def destroy
-    log_out #メソッド内容はヘルパーに記載
-    redirect_to root_url #ログアウト後、トップ画面に戻る
+    # ログイン中の場合のみログアウト処理を実行します。
+    log_out if logged_in?
+    flash[:success] = 'ログアウトしました。'
+    redirect_to root_url
   end
   
 end
