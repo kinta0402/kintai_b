@@ -2,12 +2,12 @@ class UsersController < ApplicationController
   
   # beforeアクション = Usersコントローラー内で定義されている全てのアクションが実行される前にbefore_actionが実行される
   # なぜbefore_actionするのか？ ⇒ログインしていないユーザーが、ユーザー情報編集や、更新を出来ないようにする為！！
-  before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
+  before_action :logged_in_user, only: [:index, :edit, :update]
   # editアクションとupdateアクションが実行される直前のみ、logged_in_userを実行する
   
-  before_action :correct_user,   only: [:edit, :update,]
+  before_action :correct_user,   only: [:edit, :update]
   
-  before_action:admin_user,      only: [:destroy, :edit_basic_info, :update_basic_info, :index,]
+  before_action:admin_user,      only: [:destroy, :edit_basic_info, :update_basic_info, :index]
   
   def index # 全てのユーザーを表示する
     @users = User.paginate(page: params[:page]).search(params[:search])
