@@ -60,6 +60,12 @@ class UsersController < ApplicationController
     end
   end
   
+  def destroy
+    User.find(params[:id]).destroy
+    flash[:success] = "削除しました。"
+    redirect_to users_url
+  end
+  
   def edit_basic_info
     @user = User.find(params[:id])
   end
@@ -104,13 +110,6 @@ class UsersController < ApplicationController
       redirect_to(root_url) unless @user == current_user #or current_user.admin?
     end
     
-  
-    
-    def destroy
-      User.find(params[:id]).destroy
-      flash[:success] = "削除しました。"
-      redirect_to users_url
-    end
     
      # 管理者かどうか確認
     def admin_user
